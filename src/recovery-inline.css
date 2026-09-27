@@ -1,0 +1,8 @@
+#arcade-load-help { position: fixed; z-index: 10000; inset: 0; display: grid; place-items: center; padding: 20px; background: #090711dd; color: #f6f4ef; font: 15px/1.5 system-ui, sans-serif; }
+#arcade-load-help[hidden] { display: none; }
+#arcade-load-help > div { width: min(100%, 470px); padding: 26px; border: 1px solid #a991e1; border-radius: 12px; background: #211a30; box-shadow: 0 20px 60px #0009; }
+#arcade-load-help h2 { margin: 0 0 12px; color: #fff; font: 800 24px/1.2 system-ui, sans-serif; }
+#arcade-load-help p { margin: 0 0 14px; }
+#arcade-load-help button { padding: 10px 14px; border: 1px solid #c3acff; border-radius: 5px; color: #20182d; background: #d6c4ff; font: 700 14px system-ui, sans-serif; cursor: pointer; }
+#arcade-load-help button:focus-visible { outline: 3px solid white; outline-offset: 3px; }
+#arcade-load-help .detail { color: #c8bfd4; font-size: 13px; }

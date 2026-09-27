@@ -258,6 +258,7 @@ function animate(now) {
   draw(mode === 'paused' ? 0 : dt);
 }
 soundUI(); resize(); requestAnimationFrame(animate);
+document.body.dataset.arcadeReady = 'true';
 
 // Read-only observation for browser validation. Input always uses the real controls.
 if (new URLSearchParams(location.search).has('test')) {

@@ -2,6 +2,7 @@
 import assert from 'node:assert/strict';
 import { mkdir, writeFile } from 'node:fs/promises';
 import { exerciseOfflineUpdate } from './offline-update.mjs';
+import { exerciseRecovery } from './recovery-browser.mjs';
 import { bankShot, exerciseBankshot } from './bankshot-browser.mjs';
 const { default: puppeteer } = await import(process.env.PUPPETEER_MODULE || 'puppeteer-core');
 const base = process.env.ARCADE_URL || 'http://127.0.0.1:4173/';
@@ -17,7 +18,11 @@ function monitor(target, allowedBase) {
   target.on('pageerror', e => errors.push(e.message));
   target.on('console', m => { if (m.type() === 'error') errors.push(m.text()); });
   target.on('response', r => { if (r.status() >= 400) errors.push(`${r.status()} ${r.url()}`); });
-  target.on('requestfailed', r => errors.push(`${r.failure()?.errorText} ${r.url()}`));
+  target.on('requestfailed', r => {
+    // A tab can cancel its favicon request while navigating or closing.
+    if (r.failure()?.errorText === 'net::ERR_ABORTED' && r.url().endsWith('/favicon.svg')) return;
+    errors.push(`${r.failure()?.errorText} ${r.url()}`);
+  });
   target.on('request', r => { if (!r.url().startsWith(allowedBase) && !r.url().startsWith('data:')) external.push(r.url()); });
 }
 monitor(page, base);
@@ -270,6 +275,7 @@ try {
   await exerciseBankshot({page, browser, base, output, record, back});
 
   await exerciseOfflineUpdate({browser, base, monitor, record});
+  await exerciseRecovery({browser, base, record});
 
   assert.deepEqual(errors,[]); assert.deepEqual(external,[]);
   record({name:'console/page/resource errors and external runtime requests',errors,external});

@@ -714,3 +714,4 @@ function animate() {
   renderer.render(scene, camera);
 }
 animate();
+document.body.dataset.arcadeReady = 'true';

@@ -361,6 +361,7 @@ function animate(now) {
   renderer.render(scene, camera);
 }
 requestAnimationFrame(animate);
+document.body.dataset.arcadeReady = 'true';
 
 // Read-only diagnostics for repeatable browser checks; no gameplay shortcuts.
 if (new URLSearchParams(location.search).has('test')) {

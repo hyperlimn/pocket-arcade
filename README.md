@@ -44,6 +44,7 @@ npm run preview -- --host 127.0.0.1
 Open the preview URL (normally `http://127.0.0.1:4173`). Wait for **All four games ready offline** on the home screen. The first successful production load caches **all four games**, even before you open them. They can then reload and launch with the network disabled.
 
 The **contents of `dist/`** are the entire static site. No Node process, API, runtime CDN, or server-side routing is needed on the host. The build generates and checks the full precache, page links, manifest, scope, and icon sizes. `dist/` and dependencies stay out of Git; commit the source and `package-lock.json`.
+`public/THREE-LICENSE.txt` accompanies the bundled Three.js code in every distribution.
 
 ## GitHub Pages deployment
 
@@ -66,11 +67,13 @@ Open **`http://127.0.0.1:4173/pocket-arcade/`**. Include leading and trailing sl
 
 The workflow follows [GitHub's supported Pages Actions deployment](https://docs.github.com/en/pages/getting-started-with-github-pages/using-custom-workflows-with-github-pages) and [Vite's project-site base guidance](https://vite.dev/guide/static-deploy#github-pages). Other static HTTPS hosts can also serve `dist/`; serve the correct MIME types and do not rewrite missing assets to HTML. Prefer revalidation of `sw.js` where the host permits cache-header configuration.
 
+For a separate custom-domain host and a USB/IT handoff, see [alternate distribution](docs/ALTERNATE-DISTRIBUTION.md). `npm run package:static-host` creates an upload-ready static folder with a service-worker cache header. `npm run package:offline` creates a standalone ZIP and folder with all four games and an optional local Python 3 launcher. Both go under ignored `release/`. No alternate host or domain registration is needed to build either artifact.
+
 ## Chromebook installation and offline play
 
 On a Chromebook, open the HTTPS Pages URL in Chrome. Scroll past the four games and use **Install Pocket Arcade** when available, or Chrome's install option in the address bar/menu. Wait for **All four games ready offline** before disconnecting: the home page precaches every game even if you have never opened it. Installation is optional; the ordinary browser tab also works offline after caching. School/work device policies can restrict installation. The initial visit needs a connection; browsers can evict cached data if storage is cleared or constrained. `file://` is not supported.
 
-Builds precache local assets into a content-versioned cache. New workers wait while an older arcade tab is open, keeping a running game on its current code. Close **all tabs/windows for this arcade**, then reopen to activate an available update. Old caches are removed on activation. To inspect a development change, use Vite's separate development port; to completely reset production caching, use Chrome DevTools → Application → Service Workers / Storage for that origin.
+Builds precache local assets into a content-versioned cache. New workers wait while an older arcade tab is open, keeping a running game on its current code. Close **all tabs/windows for this arcade**, then reopen to activate an available update. Online navigations revalidate HTML, while offline navigations use the complete precached build. The worker keeps two prior arcade caches temporarily so an old document can still load its hashed scripts after an update; older arcade caches are removed on activation. To inspect a development change, use Vite's separate development port. If a page cannot load its JavaScript, an HTML-only recovery dialog gives full-reload instructions and a **Repair saved copy** button. The button first checks that the site is reachable, then unregisters only this arcade's worker and deletes only its scoped arcade caches before reloading. It preserves scores in Local Storage and does not touch other sites' caches.
 
 ## Small by design
 
@@ -80,7 +83,8 @@ Builds precache local assets into a content-versioned cache. New workers wait wh
 - `skyslice.html` + `src/skyslice/`: a separate renderer/input layer and small stacking model.
 - `bankshot.html` + `src/bankshot/`: its own aiming, ricochet model, instanced table renderer, and controls.
 - `src/site.js`: shared install/offline status and arcade-link styles.
-- `vite.config.js`: five page entries; Vite shares the Three.js bundle.
+- `src/recovery-inline.js` and `.css`: recovery dialog embedded in every HTML page, independent of compiled assets.
+- `vite.config.js`: five page entries, inline recovery injection; Vite shares the Three.js bundle.
 - `scripts/build-offline.mjs`: inventories the complete build and generates `dist/sw.js`; the manifest and icons live in `public/`.
 - `scripts/verify-build.mjs`: validates the deployable artifact on every build.
 - `.github/workflows/pages.yml`: builds and deploys default-branch pushes after Pages is enabled.
@@ -100,7 +104,7 @@ Seven additional SKYSLICE simulation tests cover timed landings, axis alternatio
 
 Seven BANKSHOT simulation tests cover legal aiming, input rejection, collision/reflection, rail/chain scoring, armor, frame-rate consistency, automatic return, terminal failure/reset, escalating density, and 200 bounded runs.
 
-An optional Chromium integration suite exercises all four games, input/restart/navigation, viewport sizes, installability, first-load offline caching, project scope, and safe service-worker updates. Provide `puppeteer-core` (test-only) and a local Chromium executable:
+An optional Chromium integration suite exercises all four games, input/restart/navigation, viewport sizes, installability, first-load offline caching, project scope, safe service-worker updates, and the missing-script recovery dialog. Provide `puppeteer-core` (test-only) and a local Chromium executable:
 
 ```bash
 npm install --no-save --package-lock=false puppeteer-core

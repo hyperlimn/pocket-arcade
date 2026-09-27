@@ -33,3 +33,4 @@ document.querySelector('#games').innerHTML = games.map(game => `
     <div class="card-art" aria-hidden="true">${game.art}<span class="game-number">${game.number}</span>${game.number === '04' ? '<span class="new-badge">NEW ARRIVAL</span>' : ''}</div>
     <div class="card-copy"><p class="genre">${game.genre}</p><h2>${game.name}</h2><p class="tagline">${game.tagline}</p><p class="description">${game.description}</p><div class="card-bottom"><span>${game.controls}</span><b>PLAY ↗</b></div></div>
   </a>`).join('');
+document.body.dataset.arcadeReady = 'true';

@@ -22,6 +22,13 @@ export async function exerciseOfflineUpdate({browser, base, monitor, record}) {
     // Cache storage belongs to the whole origin: other Pages projects must survive cleanup.
     const unrelated = `pocket-arcade-${new URL('/another-project/', subBase).href}|keep`;
     await subPage.evaluate(async key => { await caches.open(key); }, unrelated);
+    // Simulate an old document asking for a hashed script removed from the host.
+    const staleAsset = `${subBase}assets/arcade-old-build.js`;
+    await subPage.evaluate(async url => {
+      const key = (await caches.keys()).find(name => name.endsWith('test-previous'));
+      await (await caches.open(key)).put(url, new Response('old-script-still-available',
+        { headers: { 'Content-Type': 'text/javascript' } }));
+    }, staleAsset);
     const oldGame = await browser.newPage(); monitor(oldGame, subBase);
     await oldGame.goto(`${subBase}ring-riot.html?test`, {waitUntil:'networkidle0'});
     await oldGame.click('#start');
@@ -30,7 +37,7 @@ export async function exerciseOfflineUpdate({browser, base, monitor, record}) {
     await subPage.bringToFront();
     await subPage.waitForFunction(async()=>Boolean((await navigator.serviceWorker.getRegistration()).waiting), {polling:100});
     await subPage.reload({waitUntil:'networkidle0'});
-    assert.equal(await subPage.$eval('body', e => e.dataset.testRevision), '0');
+    assert.equal(await subPage.$eval('body', e => e.dataset.testRevision), '1');
     await subPage.waitForFunction(()=>document.querySelector('#offline-status').textContent.includes('Update ready'));
     assert.equal(await subPage.evaluate(async()=>(await caches.keys()).length),3);
     await subPage.close();
@@ -57,12 +64,19 @@ export async function exerciseOfflineUpdate({browser, base, monitor, record}) {
     await oldGame.close();
     await activation;
     await lifecycleClient.detach(); await observer.close();
+    revision = 2;
+    const online = await browser.newPage(); monitor(online, subBase);
+    await online.goto(subBase, {waitUntil:'networkidle0'});
+    assert.equal(await online.$eval('body', e => e.dataset.testRevision), '2', 'Online navigation must revalidate HTML');
+    await online.close();
+    revision = 1;
     const updated=await browser.newPage(); monitor(updated, subBase);
     await updated.setCacheEnabled(false); await updated.setOfflineMode(true);
     let response=await updated.goto(subBase,{waitUntil:'networkidle0'});assert.ok(response.fromServiceWorker());
-    await updated.waitForFunction(async()=>{const k=await caches.keys();return k.length===2&&k.some(key=>key.endsWith('test-update'))&&!k.some(key=>key.endsWith('test-previous'));});
+    await updated.waitForFunction(async()=>{const k=await caches.keys();return k.length===3&&k.some(key=>key.endsWith('test-update'))&&k.some(key=>key.endsWith('test-previous'));});
     assert.ok(await updated.evaluate(async key=>(await caches.keys()).includes(key), unrelated));
     assert.equal(await updated.$eval('body', e => e.dataset.testRevision), '1');
+    assert.equal(await updated.evaluate(async url => (await fetch(url)).text(), staleAsset), 'old-script-still-available');
     assert.equal(await updated.evaluate(async()=>Boolean(await navigator.serviceWorker.getRegistration(new URL('/',location.href)))), new URL(base).pathname === '/');
     response=await updated.goto(subBase+'ring-riot.html?test',{waitUntil:'networkidle0'});assert.ok(response.fromServiceWorker());
     await updated.click('#start'); await delay(2700);
@@ -79,7 +93,7 @@ export async function exerciseOfflineUpdate({browser, base, monitor, record}) {
     await updated.click('#start'); await bankShot(updated);
     assert.ok(await updated.evaluate(()=>arcadeSnapshot().score)>0);
     await updated.close();
-    record({name:'Pages update waits for both old tabs; new content activates after closure; scoped cleanup preserves sibling cache; all four score offline on new worker',passed:true});
+    record({name:'Pages update waits for old tabs; online HTML refreshes; prior hashed assets and sibling cache survive; all four score offline on new worker',passed:true});
 
   } finally { host.server.closeAllConnections(); await new Promise(resolve=>host.server.close(resolve)); }
 }

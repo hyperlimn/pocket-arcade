@@ -23,9 +23,11 @@ self.addEventListener('install', event => {
 });
 self.addEventListener('activate', event => {
   event.waitUntil((async () => {
-    for (const key of await caches.keys()) {
-      if (key.startsWith(PREFIX) && key !== CACHE) await caches.delete(key);
-    }
+    // A browser may still have an older HTML document open (or in HTTP cache)
+    // after this worker activates. Keep two prior builds for its hashed assets.
+    const versions = (await caches.keys()).filter(key => key.startsWith(PREFIX));
+    const keep = new Set([CACHE, ...versions.filter(key => key !== CACHE).slice(-2)]);
+    for (const key of versions) if (!keep.has(key)) await caches.delete(key);
     await self.clients.claim();
   })());
 });
@@ -37,7 +39,22 @@ self.addEventListener('fetch', event => {
   if (url.pathname.endsWith('/')) url.pathname += 'index.html';
   event.respondWith((async () => {
     const cache = await caches.open(CACHE);
-    return (await cache.match(url.href)) || fetch(event.request);
+    if (event.request.mode === 'navigate') {
+      // Prefer the latest HTML online; fall back to this complete build offline.
+      try {
+        const response = await fetch(event.request, { cache: 'no-store' });
+        if (response.ok) return response;
+      } catch { /* Offline: use the precached document below. */ }
+      return (await cache.match(url.href)) || Response.error();
+    }
+    const current = await cache.match(url.href);
+    if (current) return current;
+    // A stale tab can still request a hash from the previous deployment.
+    for (const key of (await caches.keys()).filter(key => key.startsWith(PREFIX) && key !== CACHE).reverse()) {
+      const previous = await (await caches.open(key)).match(url.href);
+      if (previous) return previous;
+    }
+    return fetch(event.request);
   })());
 });
 `);

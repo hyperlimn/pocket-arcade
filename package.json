@@ -6,6 +6,8 @@
   "scripts": {
     "dev": "vite",
     "build": "vite build && node scripts/build-offline.mjs && node scripts/verify-build.mjs",
+    "package:offline": "node scripts/package-offline.mjs",
+    "package:static-host": "node scripts/package-static-host.mjs",
     "preview": "vite preview",
     "test": "node --test tests/*.test.mjs",
     "test:pages": "node scripts/test-pages.mjs"

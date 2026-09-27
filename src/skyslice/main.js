@@ -258,6 +258,7 @@ function animate(now) {
   renderer.render(scene, camera);
 }
 demo(); updateSound(); resize(); requestAnimationFrame(animate);
+document.body.dataset.arcadeReady = 'true';
 
 // Read-only instrumentation; all browser tests act through normal input.
 if (new URLSearchParams(location.search).has('test')) {
