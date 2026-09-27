@@ -1,0 +1,15 @@
+{
+  "id": "./",
+  "name": "Pocket Arcade — Little games. Big runs.",
+  "short_name": "Pocket Arcade",
+  "description": "Four small 3D arcade games. Chase a score, take another run, play offline.",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#14121e",
+  "theme_color": "#14121e",
+  "icons": [
+    { "src": "icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any maskable" },
+    { "src": "icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any maskable" }
+  ]
+}

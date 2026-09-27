@@ -1,0 +1,134 @@
+{
+  "date": "2026-09-27T00:48:25.337Z",
+  "checks": [
+    {
+      "name": "initial home load precaches all four unvisited games",
+      "files": 22
+    },
+    {
+      "name": "HTTP cache + network disabled: home reload, all four unvisited games launch and score, all game pages reload, all return paths",
+      "passed": true
+    },
+    {
+      "name": "real-time round-two pressure with repeated keyboard pulses",
+      "wave": 2,
+      "time": 23.291666666665986,
+      "score": 7200,
+      "drawCalls": 34,
+      "geometries": 17
+    },
+    {
+      "name": "RING RIOT keyboard/pointer, chain scoring, pause, loss/results, restart, navigation",
+      "score": 600,
+      "combo": 3,
+      "drawCalls": 38,
+      "triangles": 8096
+    },
+    {
+      "name": "real touch charge/steer/release + VOIDLINE touch steering/restart + 1024\u00d7600, 960\u00d7600, 390\u00d7844 layouts",
+      "passed": true
+    },
+    {
+      "name": "VOIDLINE opening hierarchy / no text overlap + SKYSLICE + home layouts at 1440\u00d7900, 1366\u00d7768, 1024\u00d7600, 390\u00d7844, 375\u00d7667",
+      "passed": true
+    },
+    {
+      "name": "SKYSLICE real keyboard/pointer: cut, perfects, 14 slabs / rise 2, pause/resume, blur pause, loss/results, immediate restart, best/mute persistence",
+      "mode": "playing",
+      "time": 19.89166666666618,
+      "score": 4200,
+      "height": 14,
+      "streak": 13,
+      "bestStreak": 13,
+      "perfects": 13,
+      "repairs": 2,
+      "cooldown": 0.23,
+      "speed": 4.88,
+      "top": {
+        "x": 0.279999999999999,
+        "z": 0,
+        "w": 3.8,
+        "d": 3.8
+      },
+      "active": {
+        "x": -4.5200000000000005,
+        "z": 0,
+        "w": 3.8,
+        "d": 3.8,
+        "axis": "x",
+        "direction": 1,
+        "offset": -4.8
+      },
+      "drawCalls": 21,
+      "triangles": 560,
+      "geometries": 4,
+      "visibleSlabs": 15,
+      "fallingPieces": 0,
+      "particles": 18
+    },
+    {
+      "name": "SKYSLICE real Chrome touch: placement, pause/resume, failure, immediate restart, portrait gameplay/results",
+      "passed": true
+    },
+    {
+      "name": "BANKSHOT opening hierarchy and complete table/control bounds at 1440\u00d7900, 1366\u00d7768, 1024\u00d7600, 390\u00d7844, 375\u00d7667",
+      "passed": true
+    },
+    {
+      "name": "BANKSHOT real keyboard/pointer: aiming, fine control, held-key rejection, rack 11 density/armor, chains, banks, flight pause, blur pause, failure, results, restart and local records",
+      "score": 12600,
+      "round": 11,
+      "breaks": 36,
+      "bestChain": 9,
+      "banked": 28,
+      "drawCalls": 19,
+      "triangles": 1456,
+      "geometries": 6,
+      "finalScore": 12750
+    },
+    {
+      "name": "BANKSHOT portrait touch drag/release, cancel, multi-touch, pause/resume, aim/fire buttons, failure, restart and arcade return",
+      "passed": true
+    },
+    {
+      "name": "subdirectory installation + update waits for old tabs + activates after close + offline launch on new worker",
+      "passed": true
+    },
+    {
+      "name": "console/page/resource errors and external runtime requests",
+      "errors": [],
+      "external": []
+    }
+  ],
+  "build": {
+    "files": 23,
+    "precache": 22,
+    "bytes": 613201,
+    "gzipBytes": 171351
+  },
+  "preservedOriginalGameSources": {
+    "voidline.html": "623db8df2bf4f1075644eb7dae3dca010b9ad549c8967e603139d51fabe9249d",
+    "src/main.js": "0bad98a2366c3e57ff63606def088b8df4ec4ef948e7d5f20a68641bb4b1942f",
+    "src/style.css": "2f469897a44aa1cb7fb35565c2d3e6c32d7ec1de883626667b44cb9ab38ed967",
+    "ring-riot.html": "f280b5e410cdeab2200ed9c2ad63bd7fa893360269e2e4874abd6355b915c113",
+    "skyslice.html": "34bbb3b6014263c035c9e963cb295ea32c0073afd9119603ad117616a7d492fb",
+    "src/ring-riot/style.css": "b3c817d2096084dac0645f991e044fba2c1e99450b64278a3c7b8734a84ded33",
+    "src/ring-riot/main.js": "d2cbdea7fd38fd7166c8bb7a5e381b526c058981fd435ecab2120bc88adb3e72",
+    "src/ring-riot/model.js": "83f92f3840e59c2c1220cefc69fb18f8626dff307f93a4516e0b8283baa8219a",
+    "src/skyslice/style.css": "5a767a02c419a1fd3e226246bdceb282f4d4f0db480123dcd21fb0ecdef32937",
+    "src/skyslice/main.js": "7b23b9e7437964a39c46d1664a5c4b17bd6b4420c8effd00f13bc32b69ecf6de",
+    "src/skyslice/model.js": "a3128822e03f6ebdf75cf1ac820a6c41ad90117d29c1092b933c03a3e1d416cd"
+  },
+  "simulation": {
+    "individualTestsPassed": 21,
+    "bankshotTestsPassed": 7,
+    "bankshotSeededBoundedRuns": 200
+  },
+  "screenshots": "/tmp/pocket-four-validation/",
+  "bankshotSourceHashes": {
+    "bankshot.html": "47dd26a9f5c958f376e1a8db4cc0fd24eab60fd42b6aca7e1a33aa784bed3879",
+    "src/bankshot/main.js": "fea49a226b59cfaf09884cb0d1b826becddbb0d98c87f34d230ac0e66c4510eb",
+    "src/bankshot/model.js": "20904eac5a9338f23cc12cf9ab5695ca1be57939cfa3ee38d88d33e9fbf4f4c9",
+    "src/bankshot/style.css": "71e4e7e7f1cecdc59a4c23f7a47bf812243167b58aa60dbc681f2237b6f16437"
+  }
+}

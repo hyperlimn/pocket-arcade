@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <meta name="theme-color" content="#050611" />
+    <link rel="icon" href="./favicon.svg" type="image/svg+xml" />
+    <link rel="manifest" href="./manifest.webmanifest" />
+    <title>VOIDLINE — Thread the Storm</title>
+  </head>
+  <body>
+    <canvas id="game" aria-label="VOIDLINE 3D arcade game"></canvas>
+
+    <div id="vignette"></div>
+    <div id="flash"></div>
+
+    <header id="hud" class="hidden" aria-live="polite">
+      <div class="hud-block score-block">
+        <span class="label">SCORE</span>
+        <span id="score">000000</span>
+      </div>
+      <div id="combo-wrap" class="hud-block combo-block">
+        <span class="label">FLOW</span>
+        <span id="combo">×1</span>
+        <div class="combo-track"><i id="combo-fill"></i></div>
+      </div>
+      <div class="hud-block best-block">
+        <span class="label">BEST</span>
+        <span id="best">000000</span>
+      </div>
+    </header>
+
+    <div id="speed" class="hidden"><span id="speed-bars"></span><b id="speed-label">RUSH 01</b></div>
+    <div id="callout" aria-live="assertive"></div>
+
+    <main id="overlay">
+      <section id="start-panel" class="panel">
+        <h1>VOID<span>LINE</span></h1>
+        <p class="tagline">Thread the gap. Ride the edge.</p>
+        <div class="controls">
+          <div><kbd>WASD</kbd><span>or</span><kbd>ARROWS</kbd></div>
+          <p>STEER · OR MOVE / DRAG YOUR POINTER</p>
+        </div>
+        <p class="scoring-hint">Skim edges to build <strong>FLOW.</strong><br />Grab shards for bonus points.</p>
+        <button id="start-button" type="button">LAUNCH <span>SPACE / TAP</span></button>
+      </section>
+
+      <section id="gameover-panel" class="panel hidden">
+        <p class="eyebrow danger">SIGNAL LOST</p>
+        <h2>RUN OVER</h2>
+        <div class="result-grid">
+          <div><span>SCORE</span><strong id="final-score">0</strong></div>
+          <div><span>BEST</span><strong id="final-best">0</strong></div>
+          <div><span>GATES</span><strong id="final-gates">0</strong></div>
+          <div><span>BEST FLOW</span><strong id="final-combo">×1</strong></div>
+        </div>
+        <p id="new-best" class="new-best hidden">NEW PERSONAL SIGNAL</p>
+        <button id="restart-button" type="button">RUN AGAIN <span>SPACE / TAP</span></button>
+      </section>
+    </main>
+
+    <div id="rotate-hint">ROTATE YOUR DEVICE FOR MORE ROOM</div>
+    <a class="arcade-back" href="./" aria-label="Return to arcade">← ARCADE</a>
+    <script type="module" src="./src/main.js"></script>
+    <script type="module" src="./src/site.js"></script>
+  </body>
+</html>

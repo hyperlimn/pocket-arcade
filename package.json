@@ -1,0 +1,19 @@
+{
+  "name": "pocket-arcade",
+  "private": true,
+  "version": "0.1.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build && node scripts/build-offline.mjs && node scripts/verify-build.mjs",
+    "preview": "vite preview",
+    "test": "node --test tests/*.test.mjs",
+    "test:pages": "node scripts/test-pages.mjs"
+  },
+  "dependencies": {
+    "three": "^0.180.0"
+  },
+  "devDependencies": {
+    "vite": "^7.1.7"
+  }
+}

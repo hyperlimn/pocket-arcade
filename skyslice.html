@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="theme-color" content="#e9ded0" />
+  <link rel="icon" href="./favicon.svg" type="image/svg+xml" />
+  <link rel="manifest" href="./manifest.webmanifest" />
+  <title>SKYSLICE — A little higher.</title>
+</head>
+<body>
+  <canvas id="tower" tabindex="-1" aria-label="SKYSLICE 3D tower timing game"></canvas>
+  <div class="sun" aria-hidden="true"></div>
+  <header id="hud" hidden>
+    <div><span class="label">SCORE</span><strong id="score">0</strong></div>
+    <div class="height-block"><span class="label" id="chapter">RISE 01</span><strong><b id="height">0</b><small> SLABS</small></strong></div>
+    <div class="best-block"><span class="label">BEST</span><strong id="best">0</strong></div>
+  </header>
+  <div id="feedback" role="status"><strong id="callout"></strong><span id="callout-detail"></span></div>
+  <div id="play-ui" hidden><div class="streak"><i></i><i></i><i></i><span id="streak-label">3 PERFECTS = GROWTH</span></div><button id="place">PLACE SLAB <span>SPACE / TAP ANYWHERE</span></button></div>
+  <main id="overlay">
+    <section id="intro" class="panel">
+      <p class="eyebrow">POCKET ARCADE / 03</p>
+      <h1>SKY<span>SLICE</span><i>.</i></h1>
+      <p class="tagline">A little higher.</p>
+      <p class="premise">Stack the sky. Trim the excess.<br />Keep enough to go again.</p>
+      <div class="how"><b>SPACE / CLICK / TAP</b><span>Place the moving slab over the tower.</span></div>
+      <p class="hook">Flush landings build a bonus streak.<br />Three perfects regrow your top.</p>
+      <button id="start" class="primary">BUILD A LITTLE <span>ENTER / SPACE</span></button>
+    </section>
+    <section id="results" class="panel" hidden>
+      <p class="eyebrow" id="result-label">ONE SLICE TOO FAR</p>
+      <h2>THAT'S<br /><span>YOUR LIMIT.</span></h2>
+      <div class="result-score"><span>YOUR SCORE</span><strong id="final-score">0</strong></div>
+      <div class="stats"><div><strong id="final-height">0</strong><span>SLABS</span></div><div><strong id="final-perfects">0</strong><span>PERFECTS</span></div><div><strong id="final-streak">0</strong><span>BEST STREAK</span></div></div>
+      <p id="result-tip">The next tower starts with a full slab.</p>
+      <button id="restart" class="primary">A LITTLE HIGHER <span>ENTER / SPACE</span></button>
+    </section>
+    <section id="pause-panel" class="panel" hidden><p class="eyebrow">ROOM TO BREATHE</p><h2>HOLD THAT<br /><span>THOUGHT.</span></h2><button id="resume" class="primary">KEEP BUILDING <span>P / ESC</span></button></section>
+  </main>
+  <div class="utilities"><button id="sound" aria-label="Mute sound" aria-pressed="false">SOUND ON</button><button id="pause" aria-label="Pause game" hidden>Ⅱ</button></div>
+  <a class="arcade-back" href="./">← ARCADE</a>
+  <script type="module" src="./src/skyslice/main.js"></script>
+  <script type="module" src="./src/site.js"></script>
+</body>
+</html>

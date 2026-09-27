@@ -1,0 +1,22 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="theme-color" content="#14121e" />
+  <meta name="description" content="Little games. Big runs. A pocket-sized collection of 3D arcade games, ready to play offline." />
+  <link rel="icon" href="./favicon.svg" type="image/svg+xml" />
+  <link rel="manifest" href="./manifest.webmanifest" />
+  <title>Pocket Arcade</title>
+</head>
+<body>
+  <main class="arcade">
+    <header class="masthead"><a href="./" class="wordmark"><span class="mark">▰</span> POCKET ARCADE</a><span class="edition">VOL. 01 / FOUR LITTLE WORLDS</span></header>
+    <section class="intro"><p class="eyebrow">PICK UP. PLAY. REPEAT.</p><h1>Little games.<br /><span>Big runs.</span></h1><p>No account. No waiting. Just one more go.</p></section>
+    <section id="games" class="games" aria-label="Choose a game"></section>
+    <footer><div><span class="status-dot"></span><span id="offline-status" role="status">Saving all four games for offline play…</span></div><button id="install" hidden>INSTALL ARCADE ↗</button><span class="footer-note">KEYBOARD · MOUSE · TOUCH</span></footer>
+    <details class="install-help"><summary>Take it with you</summary><p>On Chrome, use “Install Pocket Arcade” in the address bar or browser menu. Wait for “All four games ready offline” above before disconnecting. A bookmark works too. Scores stay on this device.</p></details>
+  </main>
+  <script type="module" src="./src/arcade.js"></script>
+</body>
+</html>

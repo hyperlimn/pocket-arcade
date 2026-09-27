@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="theme-color" content="#241d32" />
+  <link rel="icon" href="./favicon.svg" type="image/svg+xml" />
+  <link rel="manifest" href="./manifest.webmanifest" />
+  <title>RING RIOT — Make some space.</title>
+</head>
+<body>
+  <canvas id="arena" aria-label="RING RIOT 3D sumo arena"></canvas>
+  <div class="grain"></div>
+  <header class="hud" id="hud" hidden>
+    <div><span class="label">SCORE</span><strong id="score">0</strong></div>
+    <div class="wave-block"><span class="label" id="wave">ROUND 01</span><strong id="timer">0:00</strong></div>
+    <div class="best-block"><span class="label">BEST</span><strong id="best">0</strong></div>
+  </header>
+  <div id="callout" aria-live="polite"></div>
+  <div id="charge-ui" hidden><div class="charge-label"><span id="charge-label">HOLD TO CHARGE</span><b id="chain">PULSE</b></div><div class="charge-track"><i id="charge-fill"></i></div><p id="play-tip">WASD / arrows to roll · hold SPACE, release to blast</p></div>
+  <main id="overlay">
+    <section id="intro" class="panel">
+      <p class="eyebrow">POCKET ARCADE / 02</p>
+      <h1>RING<br /><span>RIOT</span></h1>
+      <p class="tagline">Make some space.</p>
+      <div class="how"><p><b>ROLL</b> <span>WASD / arrows or move your pointer</span></p><p><b>CHARGE</b> <span>Hold Space or press &amp; hold</span></p><p><b>BLAST</b> <span>Release. Knock rivals off the rim.</span></p></div>
+      <p class="hook">Charge slows you down. Crowd clears multiply your score.<br />Touch: drag to roll &amp; charge, lift to blast.</p>
+      <button id="start">LET'S ROLL <span>ENTER / SPACE</span></button>
+    </section>
+    <section id="results" class="panel" hidden>
+      <p class="eyebrow" id="result-label">OVER THE EDGE</p><h2>GOOD<br /><span>RIDDANCE.</span></h2>
+      <div class="result-score"><span>YOUR SCORE</span><strong id="final-score">0</strong></div>
+      <div class="stats"><div><strong id="final-kills">0</strong><span>KNOCKOUTS</span></div><div><strong id="final-chain">×0</strong><span>BEST CHAIN</span></div><div><strong id="final-time">0:00</strong><span>SURVIVED</span></div></div>
+      <p id="result-tip">Full charge. Big crowd. Bigger score.</p><button id="restart">ONE MORE RIOT <span>ENTER / SPACE</span></button>
+    </section>
+    <section id="pause-panel" class="panel" hidden><p class="eyebrow">TAKE A BREATHER</p><h2>PAUSED.</h2><button id="resume">KEEP ROLLING <span>ESC / P</span></button></section>
+  </main>
+  <div class="utilities"><button id="sound" aria-label="Mute sound" aria-pressed="false">SOUND ON</button><button id="pause" aria-label="Pause game">Ⅱ</button></div>
+  <a class="arcade-back" href="./">← ARCADE</a>
+  <script type="module" src="./src/ring-riot/main.js"></script>
+  <script type="module" src="./src/site.js"></script>
+</body>
+</html>

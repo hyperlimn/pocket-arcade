@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="theme-color" content="#0c202a" />
+  <meta name="description" content="One ball. All the angles. A tiny 3D ricochet arcade game, available offline in Pocket Arcade." />
+  <link rel="icon" href="./favicon.svg" type="image/svg+xml" />
+  <link rel="manifest" href="./manifest.webmanifest" />
+  <title>BANKSHOT — Pocket Arcade</title>
+</head>
+<body>
+  <div id="stage"><canvas id="table" tabindex="0" aria-label="BANKSHOT table. Left and right arrows aim. Space fires. Drag and release to shoot."></canvas></div>
+  <header id="hud" hidden>
+    <div><span class="label">SCORE</span><strong id="score">0</strong></div>
+    <div class="round-block"><span class="label">BANKSHOT</span><strong id="round">RACK 01</strong></div>
+    <div class="best-block"><span class="label">BEST</span><strong id="best">0</strong></div>
+  </header>
+  <div id="shot-ui" hidden>
+    <div id="shot-info"><b id="callout">FIND YOUR ANGLE.</b><span id="hint">Bank off the rails to get behind the blocks.</span></div>
+    <div class="shot-controls"><button id="aim-left" aria-label="Aim left">←</button><button id="fire">FIRE SHOT <span>SPACE / ENTER</span></button><button id="aim-right" aria-label="Aim right">→</button></div>
+    <div id="charge-track"><i id="charge"></i></div>
+  </div>
+  <main id="overlay">
+    <section id="intro" class="panel">
+      <p class="eyebrow">POCKET ARCADE / 04</p>
+      <h1>BANK<span>SHOT<i>↗</i></span></h1>
+      <p class="tagline">One ball. All the angles.</p>
+      <p class="premise">Ricochet through the blocks.<br />Each shot brings them closer.<br /><b>Keep them off the striped line.</b></p>
+      <div class="how"><b>← → AIM &nbsp;·&nbsp; SPACE FIRE</b><span>Or drag on the table to aim. Release to fire.</span></div>
+      <p class="hook">Chain breaks in one shot for bigger scores.<br />Dots on a block = hits left. Each shot lasts up to 6s.</p>
+      <button id="start" class="primary">LET IT RICOCHET <span>ENTER / SPACE</span></button>
+    </section>
+    <section id="results" class="panel" hidden>
+      <p class="eyebrow" id="result-label">THE LINE GOT CLOSER</p>
+      <h2>OUT OF<br /><span>ANGLES.</span></h2>
+      <div class="result-score"><span>YOUR SCORE</span><strong id="final-score">0</strong></div>
+      <div class="stats"><div><strong id="final-rack">1</strong><span>RACK</span></div><div><strong id="final-breaks">0</strong><span>BREAKS</span></div><div><strong id="final-chain">0</strong><span>BEST CHAIN</span></div></div>
+      <p id="result-tip"></p>
+      <button id="restart" class="primary">ANOTHER ANGLE <span>ENTER / SPACE</span></button>
+    </section>
+    <section id="pause-panel" class="panel" hidden><p class="eyebrow">TAKE YOUR TIME</p><h2>HOLD THAT<br /><span>ANGLE.</span></h2><button id="resume" class="primary">BACK TO THE TABLE <span>P / ESC</span></button></section>
+  </main>
+  <div class="utilities"><button id="sound" aria-label="Mute sound" aria-pressed="false">SOUND ON</button><button id="pause" aria-label="Pause game" hidden>Ⅱ</button></div>
+  <a class="arcade-back" href="./">← ARCADE</a>
+  <script type="module" src="./src/bankshot/main.js"></script>
+  <script type="module" src="./src/site.js"></script>
+</body>
+</html>

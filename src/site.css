@@ -1,0 +1,3 @@
+.arcade-back { position: fixed; z-index: 100; bottom: 18px; right: 22px; padding: 10px 14px; border: 1px solid #ffffff38; border-radius: 5px; color: #fff; background: #14121ee8; font: 700 11px system-ui, sans-serif; text-decoration: none; letter-spacing: .1em; }
+.arcade-back:hover, .arcade-back:focus-visible { background: #37304e; outline: 2px solid #c5aeff; outline-offset: 3px; }
+@media (max-height: 480px) { .arcade-back { bottom: 8px; right: 10px; } }
