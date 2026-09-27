@@ -36,3 +36,7 @@ install?.addEventListener('click', async () => {
   installPrompt = null;
   install.hidden = true;
 });
+addEventListener('appinstalled', () => {
+  installPrompt = null;
+  if (install) install.hidden = true;
+});
