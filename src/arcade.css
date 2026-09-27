@@ -43,8 +43,12 @@ footer { display: flex; align-items: center; justify-content: space-between; gap
 .status-dot { display: inline-block; width: 5px; height: 5px; border-radius: 50%; background: #b9daa3; margin-right: 8px; }
 .footer-note { font-size: 9px; letter-spacing: .1em; }
 button { border: 1px solid #c3acff88; border-radius: 4px; color: #ded2ff; background: #c3acff11; padding: 8px 12px; font: 700 10px system-ui; cursor: pointer; }
+.offline-install { max-width: 500px; margin-top: 44px; padding-top: 20px; border-top: 1px solid #ffffff1c; }
+.offline-install h2 { margin: 0 0 10px; color: #aaa1bb; font: 800 10px ui-monospace, monospace; letter-spacing: .16em; }
+.offline-install > p { margin: 0 0 14px; color: #b6afc3; font-size: 12px; line-height: 1.6; }
+.offline-install button { padding: 7px 11px; color: #c8b9e9; border-color: #c3acff55; background: #c3acff0b; font-size: 10px; }
 .install-help { margin-top: 15px; font-size: 10px; color: #91889f; max-width: 600px; line-height: 1.6; }.install-help summary { cursor: pointer; width: fit-content; }.install-help p { font-size: 12px; }
-@media (max-width: 650px) { .arcade { padding: 22px; }.edition { display: none; }.intro { padding: 30px 0 20px; }.games { grid-template-columns: 1fr; gap: 20px; }.card-art { height: 165px; }.footer-note { display: none; } }
+@media (max-width: 650px) { .arcade { padding: 22px; }.edition { display: none; }.intro { padding: 30px 0 20px; }.games { grid-template-columns: 1fr; gap: 20px; }.card-art { height: 165px; }.footer-note { display: none; }.offline-install { margin-top: 34px; } }
 @media (min-width: 651px) and (max-height: 730px) { .arcade { padding-top: 18px; }.intro { padding: 20px 0 14px; }h1 { font-size: 48px; }.card-art { height: 155px; }.card-copy { padding: 18px 22px; }footer { margin-top: 18px; } }
 @media (prefers-reduced-motion: reduce) { .game-card { transition: none; } }
 /* Four independent worlds, one small shelf. */

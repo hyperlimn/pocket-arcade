@@ -68,7 +68,7 @@ The workflow follows [GitHub's supported Pages Actions deployment](https://docs.
 
 ## Chromebook installation and offline play
 
-On a Chromebook, open the HTTPS Pages URL in Chrome. Use **Install Arcade** when available, or Chrome's install option in the address bar/menu. Wait for **All four games ready offline** before disconnecting: the home page precaches every game even if you have never opened it. Installation is optional; the ordinary browser tab also works offline after caching. School/work device policies can restrict installation. The initial visit needs a connection; browsers can evict cached data if storage is cleared or constrained. `file://` is not supported.
+On a Chromebook, open the HTTPS Pages URL in Chrome. Scroll past the four games and use **Install Pocket Arcade** when available, or Chrome's install option in the address bar/menu. Wait for **All four games ready offline** before disconnecting: the home page precaches every game even if you have never opened it. Installation is optional; the ordinary browser tab also works offline after caching. School/work device policies can restrict installation. The initial visit needs a connection; browsers can evict cached data if storage is cleared or constrained. `file://` is not supported.
 
 Builds precache local assets into a content-versioned cache. New workers wait while an older arcade tab is open, keeping a running game on its current code. Close **all tabs/windows for this arcade**, then reopen to activate an available update. Old caches are removed on activation. To inspect a development change, use Vite's separate development port; to completely reset production caching, use Chrome DevTools → Application → Service Workers / Storage for that origin.
 
