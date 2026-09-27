@@ -1,0 +1,134 @@
+{
+  "date": "2026-09-27T02:19:01.937Z",
+  "base": "https://hyperlimn.github.io/pocket-arcade/",
+  "checks": [
+    {
+      "name": "project-scoped manifest, decoded install icons, worker registration, Chrome installability",
+      "metadata": {
+        "manifestURL": "https://hyperlimn.github.io/pocket-arcade/manifest.webmanifest",
+        "scope": "https://hyperlimn.github.io/pocket-arcade/",
+        "worker": "https://hyperlimn.github.io/pocket-arcade/sw.js",
+        "id": "https://hyperlimn.github.io/pocket-arcade/",
+        "start": "https://hyperlimn.github.io/pocket-arcade/",
+        "manifestScope": "https://hyperlimn.github.io/pocket-arcade/",
+        "display": "standalone",
+        "icons": [
+          {
+            "url": "https://hyperlimn.github.io/pocket-arcade/icon-192.png",
+            "width": 192,
+            "height": 192
+          },
+          {
+            "url": "https://hyperlimn.github.io/pocket-arcade/icon-512.png",
+            "width": 512,
+            "height": 512
+          }
+        ],
+        "registrations": [
+          "https://hyperlimn.github.io/pocket-arcade/"
+        ]
+      },
+      "installability": {
+        "installabilityErrors": []
+      }
+    },
+    {
+      "name": "initial home load precaches all four unvisited games",
+      "files": 22
+    },
+    {
+      "name": "HTTP cache + network disabled: home reload, all four unvisited games launch and score, all game pages reload, all return paths",
+      "passed": true
+    },
+    {
+      "name": "real-time round-two pressure with repeated keyboard pulses",
+      "wave": 2,
+      "time": 23.27499999999932,
+      "score": 6700,
+      "drawCalls": 28,
+      "geometries": 16
+    },
+    {
+      "name": "RING RIOT keyboard/pointer, chain scoring, pause, loss/results, restart, navigation",
+      "score": 600,
+      "combo": 3,
+      "drawCalls": 38,
+      "triangles": 8096
+    },
+    {
+      "name": "real touch charge/steer/release + VOIDLINE touch steering/restart + 1024×600, 960×600, 390×844 layouts",
+      "passed": true
+    },
+    {
+      "name": "VOIDLINE opening hierarchy / no text overlap + SKYSLICE + home layouts at 1440×900, 1366×768, 1024×600, 390×844, 375×667",
+      "passed": true
+    },
+    {
+      "name": "SKYSLICE real keyboard/pointer: cut, perfects, 14 slabs / rise 2, pause/resume, blur pause, loss/results, immediate restart, best/mute persistence",
+      "mode": "playing",
+      "time": 20.208333333332828,
+      "score": 4200,
+      "height": 14,
+      "streak": 13,
+      "bestStreak": 13,
+      "perfects": 13,
+      "repairs": 2,
+      "cooldown": 0.23,
+      "speed": 4.88,
+      "top": {
+        "x": 0.22666666666666765,
+        "z": 0,
+        "w": 3.8,
+        "d": 3.8
+      },
+      "active": {
+        "x": -4.573333333333332,
+        "z": 0,
+        "w": 3.8,
+        "d": 3.8,
+        "axis": "x",
+        "direction": 1,
+        "offset": -4.8
+      },
+      "drawCalls": 21,
+      "triangles": 560,
+      "geometries": 4,
+      "visibleSlabs": 15,
+      "fallingPieces": 0,
+      "particles": 18
+    },
+    {
+      "name": "SKYSLICE real Chrome touch: placement, pause/resume, failure, immediate restart, portrait gameplay/results",
+      "passed": true
+    },
+    {
+      "name": "BANKSHOT opening hierarchy and complete table/control bounds at 1440×900, 1366×768, 1024×600, 390×844, 375×667",
+      "passed": true
+    },
+    {
+      "name": "BANKSHOT real keyboard/pointer: aiming, fine control, held-key rejection, rack 11 density/armor, chains, banks, flight pause, blur pause, failure, results, restart and local records",
+      "score": 12350,
+      "round": 11,
+      "breaks": 37,
+      "bestChain": 7,
+      "banked": 29,
+      "drawCalls": 20,
+      "triangles": 1344,
+      "geometries": 6,
+      "finalScore": 12700
+    },
+    {
+      "name": "BANKSHOT portrait touch drag/release, cancel, multi-touch, pause/resume, aim/fire buttons, failure, restart and arcade return",
+      "passed": true
+    },
+    {
+      "name": "Pages update waits for both old tabs; new content activates after closure; scoped cleanup preserves sibling cache; all four score offline on new worker",
+      "passed": true
+    },
+    {
+      "name": "console/page/resource errors and external runtime requests",
+      "errors": [],
+      "external": []
+    }
+  ]
+}
